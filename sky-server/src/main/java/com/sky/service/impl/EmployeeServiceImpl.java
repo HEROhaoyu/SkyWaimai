@@ -94,7 +94,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setCreateTime(LocalDateTime.now());
         employee.setUpdateTime(LocalDateTime.now());
         employee.setCreateUser(BaseContext.getCurrentId());
-        employee.setUpdateUser(BaseContext.getCurrentId());
+        employee.setUpdateUser( BaseContext.getCurrentId());
 
         employeeMapper.insert(employee);
 
@@ -111,6 +111,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void startOrStop(Employee employee) {
+        employeeMapper.update(employee);
+    }
+
+    @Override
+    public Employee getInforByID(long id) {
+        return employeeMapper.getInforByID(id);
+    }
+
+    @Override
+    public void updateEmployee(EmployeeDTO employeeDTO) {
+        Employee employee = new Employee();
+        BeanUtils.copyProperties(employeeDTO,employee);
+        employee.setUpdateTime(LocalDateTime.now());
+        employee.setUpdateUser(BaseContext.getCurrentId());
         employeeMapper.update(employee);
     }
 

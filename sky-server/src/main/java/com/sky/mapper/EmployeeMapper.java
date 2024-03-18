@@ -30,6 +30,9 @@ public interface EmployeeMapper {
 
     void update(Employee employee);
 
+    @Select("select * from employee where id=#{id}")
+    Employee getInforByID(long id);
+
     //分页查询的方法
     
 }
