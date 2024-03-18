@@ -109,4 +109,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         return new PageResult(totle,list);
     }
 
+    @Override
+    public void startOrStop(Employee employee) {
+        employeeMapper.update(employee);
+    }
+
 }

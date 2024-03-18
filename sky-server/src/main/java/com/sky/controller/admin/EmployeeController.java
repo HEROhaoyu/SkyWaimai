@@ -95,4 +95,17 @@ public class EmployeeController {
         return Result.success(pageResult);
     }
 
+    //设置员工的启用和禁用
+    @PostMapping("/status/{status}")
+    @ApiOperation("启用和禁用员工账号")
+    public Result startOrStop(@PathVariable Integer status,long id){
+        log.info("启用和禁用员工账号{}，{}",status,id);
+        Employee employee=Employee.builder()
+                .id(id)
+                .status(status)
+                .build();
+        employeeService.startOrStop(employee);
+        return Result.success();
+    }
+
 }
