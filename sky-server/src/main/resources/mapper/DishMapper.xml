@@ -4,9 +4,39 @@
 <mapper namespace="com.sky.mapper.DishMapper">
 
 
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id"> #因为需要获取插入的id，所以添加这两个配置，能将主键，也就是id返回。返回的结果会直接映射到对应的对象的属性上
         insert into sky_take_out.dish (name, category_id, price, image, description, create_time, update_time, create_user, update_user,status) VALUES (#{name},#{categoryId},#{price},#{image},#{description},#{createTime},#{updateTime},#{createUser},#{updateUser},#{status})
 
 
     </insert>
+    <update id="update">
+        update sky_take_out.dish
+        <set>
+            <if test="name!=null"> name=#{name},</if>
+            <if test="categoryId!=null"> category_id=#{categoryId},</if>
+            <if test="price!=null"> price=#{price},</if>
+            <if test="image!=null"> image=#{image},</if>
+            <if test="description!=null"> description=#{description},</if>
+            <if test="updateTime!=null"> update_time=#{updateTime}, </if>
+            <if test="updateUser!=null"> update_user=#{updateUser}, </if>
+            <if test="status!=null"> status=#{status}, </if>
+        </set>
+        where id=#{id}
+    </update>
+    <select id="pageQuery" resultType="com.sky.vo.DishVO">
+        select d.*,c.name as category_name from sky_take_out.dish d left outer join sky_take_out.category c on d.category_id = c.id
+        <where>
+            <if test="name!=null">
+                and d.name like concat('%',#{name},'%')
+            </if>
+            <if test="categoryId!=null">
+                and d.category_id = #{categoryId}
+            </if>
+            <if test="status!=null">
+                and d.status = #{status}
+            </if>
+        </where>
+        order by d.create_time desc
+
+    </select>
 </mapper>
