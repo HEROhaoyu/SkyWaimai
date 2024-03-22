@@ -10,6 +10,8 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 @Mapper
 public interface DishMapper {
 
@@ -37,4 +39,7 @@ public interface DishMapper {
 
     @AutoFill(value = OperationType.UPDATE)
     void update(Dish dish);//根据id，动态修改菜品
+
+    @Select("select * from sky_take_out.dish where category_id=#{categoryId} order by create_time desc")
+    List<Dish> getFlavorListById(Long categoryId);
 }
