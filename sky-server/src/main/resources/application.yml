@@ -12,11 +12,13 @@ spring:
       url: jdbc:mysql://${sky.datasource.host}:${sky.datasource.port}/${sky.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
       username: ${sky.datasource.username}
       password: ${sky.datasource.password}
-  redis:
-    host: ${sky.redis.host}
-    port: ${sky.redis.port}
-    auth: ${sky.redis.password}
-    database: ${sky.redis.database}
+    data:
+      redis:
+        host: ${sky.redis.host}
+        port: ${sky.redis.port}
+        database: ${sky.redis.database}
+#        password: ${sky.redis.password}
+
 
 
 mybatis:
@@ -54,3 +56,9 @@ sky:
     user-secret-key: itheima
     user-ttl: 7200000
     user-token-name: authentication
+
+  redis:
+    host: ${sky.redis.host}
+    port: ${sky.redis.port}
+    database: ${sky.redis.database}
+    password: ${sky.redis.password}

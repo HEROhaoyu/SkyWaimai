@@ -19,7 +19,7 @@ public class ShopController {
 
 /*  用户不需要操作，只需要查询
     */
-/*设置店铺状态*//*
+    //设置店铺状态*//*
 
     @PutMapping("/{status}")
     @ApiOperation("设置营业状态")
@@ -31,7 +31,7 @@ public class ShopController {
 
         return Result.success();
     }
-*/
+
 
     /*查询店铺状态*/
     @GetMapping("/status")
