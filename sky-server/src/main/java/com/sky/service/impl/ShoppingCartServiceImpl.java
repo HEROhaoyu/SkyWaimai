@@ -44,7 +44,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
         //如果已经存在了，只需要将数量加一
         if(list != null && list.size() > 0){
-            ShoppingCart cart = list.get(0);
+            ShoppingCart cart = list.get(0);//在购物车表中，所有数据最多有1条，超出的部分会将商品数据+1.而不是新插入一条数据
             cart.setNumber(cart.getNumber() + 1);//update shopping_cart set number = ? where id = ?
             shoppingCartMapper.updateNumberById(cart);
         }else {

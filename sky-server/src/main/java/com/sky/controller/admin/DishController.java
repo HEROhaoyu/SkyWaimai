@@ -34,7 +34,7 @@ public class DishController {
     public Result save(@RequestBody DishDTO dishDTO){
         log.info("新增菜品：{}",dishDTO);
         dishService.saveWithFlavor(dishDTO);
-        cleanCache("dish_"+dishDTO.getCategoryId());
+//        cleanCache("dish_"+dishDTO.getCategoryId());
         return Result.success();
     }
 
@@ -52,7 +52,7 @@ public class DishController {
     public Result delete(@RequestParam List<Long> ids){
         log.info("菜品批量删除");
         dishService.deleteBatch(ids);
-        cleanCache("dish_*");
+//        cleanCache("dish_*");
         return Result.success();
     }
 
@@ -71,7 +71,7 @@ public class DishController {
     public Result update(@RequestBody DishDTO dishDTO){
         log.info("修改菜品{}",dishDTO);
         dishService.updateWithFalvor(dishDTO);
-        cleanCache("dish_*");
+//        cleanCache("dish_*");
         return Result.success();
     }
 
@@ -88,10 +88,10 @@ public class DishController {
         return Result.success(list);
     }
 
-    //清理指定的缓存数据，以保证数据一致性
-    private void cleanCache(String pattern){
-        Set keys=redisTemplate.keys(pattern);
-        redisTemplate.delete(keys);
-    }
+//    //清理指定的缓存数据，以保证数据一致性
+//    private void cleanCache(String pattern){
+//        Set keys=redisTemplate.keys(pattern);
+//        redisTemplate.delete(keys);
+//    }
 
 }
