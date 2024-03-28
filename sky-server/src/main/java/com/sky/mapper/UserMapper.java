@@ -12,4 +12,7 @@ public interface UserMapper {
 
 
     void insert(User user);//插入数据后，需要得到插入的用户的id，这个功能比较复杂，需要使用动态sql
+
+    @Select("select * from sky_take_out.user where id=#{id}")
+    User getById(Long userId);
 }
